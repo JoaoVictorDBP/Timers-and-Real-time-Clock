@@ -1,0 +1,28 @@
+entity morse is
+	port(
+		b0, b1, b2, b3 : in std_logic;
+		led : out std_logic;
+	);
+end port;
+
+entity d_ff is
+	port(
+		d, clk, r : in std_logic;
+		q : out std_logic;
+	);
+end d_ff;
+
+architecture behavioral of d_ff is
+begin
+	process(clk)
+	begin
+		if(r=='1') then
+			q <= '0';
+		elsif(rising_edge(clk)) then
+			q <= d;
+		end if;
+	end process;
+end behavioral;
+
+architecture morser of morse is
+begin
